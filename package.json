@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/ipopop/EmmanuelBARONI_6_03122020#readme",
   "devDependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
     "nodemon": "^2.0.7"
   }
 }
