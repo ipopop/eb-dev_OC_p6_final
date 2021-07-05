@@ -1,10 +1,11 @@
 {
-  "name": "EmmanuelBARONI_6_03122020",
+  "name": "emmanuel_baroni_6_03122020",
   "version": "1.0.0",
   "description": "OC P6 - from scratch NodeJS backend MVP - A student exercice by OpenClassrooms - Web Dev cursus",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/ipopop/EmmanuelBARONI_6_03122020/issues"
   },
-  "homepage": "https://github.com/ipopop/EmmanuelBARONI_6_03122020#readme"
+  "homepage": "https://github.com/ipopop/EmmanuelBARONI_6_03122020#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
 }
