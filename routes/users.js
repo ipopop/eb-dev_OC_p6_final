@@ -2,8 +2,10 @@
 
 const router = require('express').Router()
 
-router.post('/signup', (req, res) => { res.send("POST req on 'signup'") })
-router.post('/login', (req, res) => { res.send("POST req on 'login'") })
-router.get('/logout', (req, res) => { res.send("GET req on 'logout'") })
+const userCtrl = require('../controllers/users')
+
+router.post('/signup', userCtrl.signup)
+router.post('/login', userCtrl.login)
+router.get('/logout', userCtrl.logout)
 
 module.exports = router
