@@ -2,6 +2,8 @@
 
 const express = require('express')
 
+require('./database/dbConnect')
+
 const saucesRoutes = require('./routes/sauces')
 const userRoutes = require('./routes/users')
 
