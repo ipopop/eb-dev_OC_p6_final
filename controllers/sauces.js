@@ -5,9 +5,14 @@ const fs = require('fs')
 
 exports.createOneSauce = (req, res) => {
   const sauceObject = JSON.parse(req.body.sauce)
+  delete sauceObject._id
   const sauce = new Sauce({
     ...sauceObject,
-    imageUrl: `${req.protocol}://${req.get('host')}/image/${req.file.filename}`
+    imageUrl: `${req.protocol}://${req.get('host')}/image/${req.file.filename}`,
+    likes: Number(0),
+    dislikes: Number(0),
+    usersLiked: [],
+    usersDisliked: []
   })
   sauce.save()
   .then(() => res.status(201).json({ message: 'Object stored'}))
@@ -57,5 +62,62 @@ exports.getOneSauce = async (req, res, next) => {
     res.status(200).json(sauce)
   } catch (err) {
     res.status(404).json({ error: err })
+  }
+}
+
+exports.likeOrDislikeSauce = (req, res) => {  
+  const itemID = req.params.id
+  const userID = req.body.userId
+
+  switch (req.body.like) {
+    
+    case 0:
+      Sauce.findOne({ _id: itemID })
+        .then((sauce) => {
+          if (sauce.usersLiked.find(user => user === userID)) {
+            Sauce.updateOne({ _id: itemID }, {
+              $inc: { likes: Number(-1) },
+              $pull: { usersLiked: userID },
+              _id: itemID
+            })
+              .then(() => { res.status(201).json({ message: 'Like' }) })
+              .catch((error) => { res.status(400).json({ error: error }) })
+          }
+          
+          if (sauce.usersDisliked.find(user => user === userID)) {
+            Sauce.updateOne({ _id: itemID }, {
+              $inc: { dislikes: Number(-1) },
+              $pull: { usersDisliked: userID },
+              _id: itemID
+            })
+              .then(() => { res.status(201).json({ message: 'Dislike' }) })
+              .catch((error) => { res.status(400).json({ error: error }) })
+          }
+        })
+        .catch((error) => { res.status(404).json({ error: error }) })
+      break
+
+    case 1:
+      Sauce.updateOne({ _id: itemID }, {
+        $inc: { likes: Number(1) },
+        $push: { usersLiked: userID },
+        _id: itemID
+      })
+        .then(() => { res.status(201).json({ message: 'Like' }) })
+        .catch((error) => { res.status(400).json({ error: error }) })
+      break
+
+    case -1:
+      Sauce.updateOne({ _id: itemID }, {
+        $inc: { dislikes: Number(1) },
+        $push: { usersDisliked: userID },
+        _id: itemID
+      })
+        .then(() => { res.status(201).json({ message: 'Dislike' }) })
+        .catch((error) => { res.status(400).json({ error: error }) })
+      break
+
+    default:
+      console.error('Bad request')
   }
 }
