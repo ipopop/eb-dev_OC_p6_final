@@ -1,9 +1,6 @@
 'use strict'
 
-const User = ({
-  email: { type: String, required: true, unique: true },
-  password: { type: String, required: true }
-})
+const User = require('../models/User')
 
 exports.signup = (req, res) => {
 	req.body.password
@@ -32,7 +29,7 @@ exports.login = (req, res) => {
 						userId: user._id,
 						token: jwt.sign(
 							{ userId: user._id },
-							'RANDOM_TOKEN_SECRET',
+							process.env.JWT_ACCESS_TOKEN_SECRET,
 							{ expiresIn: '12h' }
 						)
 					})

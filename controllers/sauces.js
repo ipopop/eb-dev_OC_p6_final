@@ -1,16 +1,7 @@
 'use strict'
 
+const Sauce = require('../models/Sauce')
 const fs = require('fs')
-
-const Sauce = ({
-  userId : { type : String, required : true},
-  name : { type : String, required : true},
-  manufacturer : { type : String, required : true},
-  description : { type : String, required : true},
-  mainPepper : { type : String, required : true},
-  imageUrl : { type : String, required : true},
-  heat : { type : Number, required : true },
-})
 
 exports.createOneSauce = (req, res) => {
   const sauceObject = JSON.parse(req.body.sauce)
