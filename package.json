@@ -1,5 +1,5 @@
 {
-  "name": "emmanuel_baroni_6_03122020",
+  "name": "eb-dev-oc-p6-final",
   "version": "1.0.0",
   "description": "OC P6 - from scratch NodeJS backend MVP - A student exercice by OpenClassrooms - Web Dev cursus",
   "main": "main.js",
@@ -9,15 +9,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ipopop/EmmanuelBARONI_6_03122020.git"
+    "url": "git+https://github.com/ipopop/eb-dev_OC_p6_final.git"
   },
   "keywords": [],
   "author": "https://github.com/eb-dev",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ipopop/EmmanuelBARONI_6_03122020/issues"
+    "url": "https://github.com/ipopop/eb-dev_OC_p6_final/issues"
   },
-  "homepage": "https://github.com/ipopop/EmmanuelBARONI_6_03122020#readme",
+  "homepage": "https://github.com/ipopop/eb-dev_OC_p6_final#readme",
   "devDependencies": {
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
